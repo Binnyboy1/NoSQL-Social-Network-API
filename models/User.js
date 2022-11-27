@@ -43,6 +43,9 @@ const userSchema = new Schema (
 );
 
 // virtual for friendCount = reference activities 21 and 23
+userSchema.virtual('friendCount').get(function () {
+    return this.friends.length;
+});
 
 const User = model('User', userSchema);
 
