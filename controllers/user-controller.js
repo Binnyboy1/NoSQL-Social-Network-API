@@ -13,7 +13,17 @@ const userController = {
     getSingleUser(req, res) {
         // findOne() on User
         // use .populate to populate friends and thoughts for that User
-        // ex: .populate('freinds')
+        // ex: .populate('friends')
+        User.findOne({ _id: req.params.userId })
+            .select('-__v')
+            .populate('friends')
+            .populate('thoughts')
+            .then((user) =>
+                !user
+                    ? res.status(404).json({ message: 'No user with that ID' })
+                    : res.json(user)
+            )
+            .catch((err) => res.status(500).json(err));
     },
 
     // create a new user
