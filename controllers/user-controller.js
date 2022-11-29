@@ -4,6 +4,9 @@ const userController = {
     // get all users
     getUsers(req, res) {
         // find() on User
+        User.find()
+            .then((users) => res.json(users))
+            .catch((err) => res.status(500).json(err));
     },
 
     // get single user by id
