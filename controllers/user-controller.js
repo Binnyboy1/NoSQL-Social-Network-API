@@ -29,6 +29,9 @@ const userController = {
     // create a new user
     createUser(req, res) {
         // create on User
+        User.create(req.body)
+            .then((userData) => res.json(userData))
+            .catch((err) => res.status(500).json(err));
     },
 
     // update a user
