@@ -5,7 +5,7 @@ const userController = {
     getUsers(req, res) {
         // find() on User
         User.find()
-            .then((users) => res.json(users))
+            .then((user) => res.json(user))
             .catch((err) => res.status(500).json(err));
     },
 
@@ -30,7 +30,7 @@ const userController = {
     createUser(req, res) {
         // create on User
         User.create(req.body)
-            .then((userData) => res.json(userData))
+            .then((user) => res.json(user))
             .catch((err) => res.status(500).json(err));
     },
 
@@ -41,21 +41,40 @@ const userController = {
             { _id: req.params.userId },
             { $set: req.body },
             { runValidators: true, new: true }
-          )
-            .then((userData) =>
-              !userData
-                ? res.status(404).json({ message: 'No video with this id!' })
-                : res.json(userData)
+        )
+            .then((user) =>
+                !user
+                    ? res.status(404).json({ message: 'No user with this id!' })
+                    : res.json(user)
             )
             .catch((err) => {
-              console.log(err);
-              res.status(500).json(err);
+                console.log(err);
+                res.status(500).json(err);
             });
     },
 
     // delete user (BONUS: and delete associated thoughts)
     deleteUser(req, res) {
         // findOneAndDelete
+        User.findOneAndRemove({ _id: req.params.userId })
+            // responsible for deleting associated thoughts
+            /*
+            .then((user) =>
+                !user
+                    ? res.status(404).json({ message: 'No user with this id!' })
+                    : User.findOneAndUpdate(
+                        { thoughts: req.params.userId },
+                        { $pull: { thoughts: req.params.userId } },
+                        { new: true }
+                    )
+            )
+            */
+            .then((user) =>
+                !user
+                    ? res.status(404).json({ message: 'No user with this id! Process failed!' })
+                    : res.json({ message: 'User deleted!' })
+            )
+            .catch((err) => res.status(500).json(err));
     },
 
     // add friend to friend list
