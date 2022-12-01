@@ -26,6 +26,9 @@ const thoughtController = {
     // create a thought
     createThought(req, res) {
         // use create() on Thought model
+        Thought.create(req.body)
+            .then((thought) => res.json(thought))
+            .catch((err) => res.status(500).json(err));
     },
 
     // update thought
