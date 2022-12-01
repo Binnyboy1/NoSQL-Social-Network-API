@@ -14,21 +14,20 @@ const reactionSchema = new Schema (
         username: {
             type: String,
             required: [true, 'Username required']
+        },
+        createdAt: {
+            type: Date,
+            default:
+            // Set default value to the current timestamp
+            // Use a getter method to format the timestamp on query
         }
-        /*
-        reactions: [
-            {
-                // references the Reaction ObjectId
-                type: Schema.Types.ObjectId,
-                ref: 'Reaction',
-            }
-        ]
-        */
+    },
+    {
+      toJSON: {
+        getters: true,
+      },
+      id: false,
     }
 )
 
-/*
-const Thought = model('thought', thoughtSchema);
-
-module.exports = Thought;
-*/
+module.exports = reactionSchema;
