@@ -16,8 +16,6 @@ const thoughtSchema = new Schema (
             get: (date) => {
                 return dateFormat(date);
             }
-            // Set default value to the current timestamp
-            // Use a getter method to format the timestamp on query
         },
         username: {
             type: String,
