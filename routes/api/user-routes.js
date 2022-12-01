@@ -14,8 +14,10 @@ router.route('/').get(getUsers).post(createUser);
 
 // /api/users/:userId
 router.route('/:userId').get(getSingleUser).put(updateUser).delete(deleteUser);
+// ! functions will use req.params.userId !
 
 // /api/users/:userId/friends/:friendId
 router.route('/:userId/friends/:friendId').post(addFriend).delete(removeFriend);
+// ! functions will use req.params.userId and req.params.friendId !
 
 module.exports = router;
