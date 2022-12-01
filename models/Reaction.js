@@ -6,13 +6,12 @@ const reactionSchema = new Schema (
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId()
         },
+        responseBody: {
+            type: String,
+            required: true,
+            maxlength: 280
+        }
         /*
-        createdAt: {
-            type: Date,
-            default:
-            // Set default value to the current timestamp
-            // Use a getter method to format the timestamp on query
-        },
         username: {
             type: String,
             required: [true, 'Username required']
