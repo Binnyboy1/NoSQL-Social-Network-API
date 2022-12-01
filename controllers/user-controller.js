@@ -83,7 +83,7 @@ const userController = {
         // use $addToSet - reference activity 23, controller/postController - check out how it's being used in the createPost
         User.findOneAndUpdate(
             { _id: req.params.userId },
-            { $addToSet: { friends: req.params.userId } },
+            { $addToSet: { friends: req.params.friendId } },
             { runValidators: true, new: true }
         )
             .then((user) =>
