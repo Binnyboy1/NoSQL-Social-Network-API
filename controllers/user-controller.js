@@ -37,6 +37,20 @@ const userController = {
     // update a user
     updateUser(req, res) {
         // findOneAndUpdate
+        User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $set: req.body },
+            { runValidators: true, new: true }
+          )
+            .then((userData) =>
+              !userData
+                ? res.status(404).json({ message: 'No video with this id!' })
+                : res.json(userData)
+            )
+            .catch((err) => {
+              console.log(err);
+              res.status(500).json(err);
+            });
     },
 
     // delete user (BONUS: and delete associated thoughts)
