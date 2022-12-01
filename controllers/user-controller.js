@@ -81,6 +81,18 @@ const userController = {
     addFriend(req, res) {
         // findOneAndUpdate
         // use $addToSet - reference activity 23, controller/postController - check out how it's being used in the createPost
+        User.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $addToSet: { friends: req.params.userId } },
+            { runValidators: true, new: true }
+        )
+            .then((user) =>
+                !user
+                    ? res.status(404).json({ message: 'No user with this id!' })
+                    : res.json(user)
+            )
+            .catch((err) => res.status(500).json(err));
+  },
     },
 
     // remove friend from friend list
