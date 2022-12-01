@@ -95,6 +95,17 @@ const thoughtController = {
     removeReaction(req, res) {
         // findOneAndUpdate()
         // use $pull
+        Thought.findOneAndUpdate(
+            { _id: req.params.userId },
+            { $pull: { reactions: { reactionId: req.params.reactionId } } },
+            { runValidators: true, new: true }
+        )
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: 'No thought with this id!' })
+                    : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err));
     }
 };
 
