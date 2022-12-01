@@ -17,9 +17,10 @@ const reactionSchema = new Schema (
         },
         createdAt: {
             type: Date,
-            default:
-            // Set default value to the current timestamp
-            // Use a getter method to format the timestamp on query
+            default: Date.now,
+            get: (date) => {
+                return dateFormat(date);
+            }
         }
     },
     {
