@@ -1,11 +1,13 @@
 const users = [
     {
-        // start grabbing data from demo
+        "username": "lernantino",
+        "email": "lernantino@gmail.com"
     }
 ];
 
 const thoughts = [
     {
-        // start grabbing data from demo
+        "thoughtText": "You can reach out to me at lernantino@gmail.com",
+        "username": "lernantino"
     }
 ];
