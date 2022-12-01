@@ -12,6 +12,15 @@ const thoughtController = {
     // get single thought by id
     getSingleThought(req, res) {
         // use findOne() on Thought model
+        Thought.findOne({ _id: req.params.thoughtId })
+            .select('-__v')
+            .populate('reactions')
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: 'No thought with that ID' })
+                    : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err));
     },
 
     // create a thought
