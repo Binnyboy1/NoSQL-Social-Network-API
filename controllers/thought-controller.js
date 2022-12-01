@@ -4,6 +4,9 @@ const thoughtController = {
     // get all thoughts
     getThoughts(req, res) {
         // use find() on your Thought model
+        Thought.find()
+            .then((thought) => res.json(thought))
+            .catch((err) => res.status(500).json(err));
     },
 
     // get single thought by id
