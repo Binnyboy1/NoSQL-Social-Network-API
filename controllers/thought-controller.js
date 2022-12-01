@@ -53,6 +53,25 @@ const thoughtController = {
     // delete thought
     deleteThought(req, res) {
         // findOneAndRemove() on Thought model
+        Thought.findOneAndRemove({ _id: req.params.thoughtId })
+            // responsible for deleting associated reactions
+            /*
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: 'No thought with this id!' })
+                    : Thought.findOneAndUpdate(
+                        { reactions: req.params.thoughtId },
+                        { $pull: { reactions: req.params.thoughtId } },
+                        { new: true }
+                    )
+            )
+            */
+            .then((thought) =>
+                !thought
+                    ? res.status(404).json({ message: 'No thought with this id! Process failed!' })
+                    : res.json({ message: 'Thought deleted!' })
+            )
+            .catch((err) => res.status(500).json(err));
     },
 
     // add a reaction to a thought
