@@ -1,5 +1,6 @@
 const connection = require('../config/connections');
 const { User, Thought } = require('../models');
+const { userData, thoughtData } = require('./data');
 
 // Start the seeding runtime timer
 console.time('seeding');
@@ -17,6 +18,8 @@ connection.once('open', async () => {
     await Thought.collection.insertMany(thoughtData);
 
     // End the seeding runtime timer
+    console.table(userData);
+    console.table(thoughtData);
     console.timeEnd('seeding complete 🌱');
     process.exit(0);
 });

@@ -11,3 +11,8 @@ const thoughtData = [
         "username": "lernantino"
     }
 ];
+
+module.exports = {
+    userData,
+    thoughtData
+};

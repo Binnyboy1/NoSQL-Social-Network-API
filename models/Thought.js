@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-let dateFormat = require('dateformat');
+const dayjs = require('dayjs');
 
 const thoughtSchema = new Schema (
     {
@@ -14,7 +14,7 @@ const thoughtSchema = new Schema (
             type: Date,
             default: Date.now,
             get: (date) => {
-                return dateFormat(date);
+                return dayjs(date);
             }
         },
         username: {
