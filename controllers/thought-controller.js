@@ -80,7 +80,7 @@ const thoughtController = {
         // use $addToSet - reference activity 23, controllers/postController - check out how it's being used in the createPost
         Thought.findOneAndUpdate(
             { _id: req.params.thoughtId },
-            { $addToSet: { reactions: req.params.reactionId } },
+            { $addToSet: { reactions: req.params.thoughtId } },
             { runValidators: true, new: true }
         )
             .then((thought) =>
@@ -96,8 +96,8 @@ const thoughtController = {
         // findOneAndUpdate()
         // use $pull
         Thought.findOneAndUpdate(
-            { _id: req.params.userId },
-            { $pull: { reactions: { reactionId: req.params.reactionId } } },
+            { _id: req.params.thoughtId },
+            { $pull: { reactions: { thoughtId: req.params.thoughtId } } },
             { runValidators: true, new: true }
         )
             .then((thought) =>

@@ -7,8 +7,9 @@ const userData = [
 
 const thoughtData = [
     {
-        "thoughtText": "You can reach out to me at lernantino@gmail.com",
-        "username": "lernantino"
+        "thoughtText": "Here's a cool thought...",
+        "username": "lernantino",
+        "userId": "5edff358a0fcb779aa7b118b"
     }
 ];
 
