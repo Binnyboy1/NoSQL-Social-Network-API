@@ -17,7 +17,7 @@ router.route('/:thoughtId').get(getSingleThought).put(updateThought).delete(dele
 // ! functions will use req.params.thoughtId !
 
 // /api/thoughts/:thoughtId/reactions
-router.route('/thoughts/:thoughtId/reactions').post(addReaction).delete(removeReaction);
+router.route('/:thoughtId/reactions').post(addReaction).delete(removeReaction);
 // ! functions will use req.params.thoughtId !
 
 module.exports = router;

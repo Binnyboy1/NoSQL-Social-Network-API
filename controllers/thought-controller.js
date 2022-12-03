@@ -14,7 +14,7 @@ const thoughtController = {
         // use findOne() on Thought model
         Thought.findOne({ _id: req.params.thoughtId })
             .select('-__v')
-            .populate('reactions')
+            // .populate('reactions')
             .then((thought) =>
                 !thought
                     ? res.status(404).json({ message: 'No thought with that ID' })
@@ -27,7 +27,21 @@ const thoughtController = {
     createThought(req, res) {
         // use create() on Thought model
         Thought.create(req.body)
-            .then((thought) => res.json(thought))
+            .then((thought) => {
+
+                User.findOneAndUpdate(
+                    { _id: req.body.userId },
+                    { $addToSet: { thoughts: thought._id } },
+                    { runValidators: true, new: true }
+                )
+                    .then((user) =>
+                        !user
+                            ? res.status(404).json({ message: 'No user with this id!' })
+                            : res.json(thought)
+                    )
+                    .catch((err) => res.status(500).json(err));
+
+            })
             .catch((err) => res.status(500).json(err));
     },
 
