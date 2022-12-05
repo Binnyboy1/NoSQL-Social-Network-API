@@ -1,5 +1,7 @@
 const { Schema } = require('mongoose');
 const dayjs = require('dayjs');
+const advancedFormat = require('dayjs/plugin/advancedFormat')
+dayjs.extend(advancedFormat);
 
 const reactionSchema = new Schema (
     {
@@ -20,7 +22,7 @@ const reactionSchema = new Schema (
             type: Date,
             default: Date.now,
             get: (date) => {
-                return dayjs(date);
+                return dayjs(date).format('MMM Do, YYYY [at] h:mm a');
             }
         }
     },
