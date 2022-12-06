@@ -5,13 +5,13 @@ dayjs.extend(advancedFormat);
 
 const reactionSchema = new Schema (
     {
-        reactionId: {
-            type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId()
-        },
+        // reactionId: {
+        //     type: Schema.Types.ObjectId,
+        //     default: () => new Types.ObjectId()
+        // },
         responseBody: {
             type: String,
-            required: true,
+            required: [true, 'A non-empty response is required'],
             maxlength: 280
         },
         username: {
