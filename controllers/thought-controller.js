@@ -5,6 +5,7 @@ const thoughtController = {
     getThoughts(req, res) {
         // use find() on your Thought model
         Thought.find()
+            .select('-__v')
             .then((thought) => res.json(thought))
             .catch((err) => res.status(500).json(err));
     },

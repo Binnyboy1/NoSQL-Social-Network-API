@@ -24,12 +24,14 @@ npm i dayjs@^1.11.6 express@^4.18.2 mongodb@^4.12.1 mongoose@^6.7.3
 npm run seed
 ```
 
-4. You can run `npm run seed` if you want to clear the data, otherwise you can stick to just `npm run start` everytime you start up the project
-
 ## Usage
 
 In the terminal, you can run `npm run seed` if you want to clear the data, otherwise you can stick to just `npm run start` everytime you start up the project.
 
+```
+npm run start
+```
+
 You'll need a REST API client like Insomnia in order to test out the functionality of the Social Network API, like what is shown in the demo.
 
-[Demo](https://drive.google.com/file/d/1JodwnZ_2eSbFy6e7hIGN4CSbx6zwY6KU/view)
+[Demo](https://drive.google.com/file/d/1Rvrt7QegWMOILommoDpX2g7EzzDnyzxs/view)
